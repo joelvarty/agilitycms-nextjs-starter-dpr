@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta http-equiv="refresh" content="10">
+		<style>
+			* {
+				font-family: sans-serif;
+			}
+		</style>
+		<script>
+			function triggerDeploy() {
+				console.log("TRIGGERING DEPLOY")
+				fetch("https://api.netlify.com/build_hooks/60d49c82f582391a66e7f229",{
+					method: "post"
+				}).catch(function(error) {
+					console.error("BUILD COULD NOT BE TRIGGERED", error)
+
+				}).then(function(res) {
+					console.log("BUILD TRIGGERED", res )
+					location.reload()
+				})
+			}
+		</script>
+	</head>
+
+
+	<body>
+
+		<div>
+			Deploy Status: <img src="https://api.netlify.com/api/v1/badges/9f130166-840a-43e0-ace2-7f10bb076ac7/deploy-status" alt="Deploy status badge" />
+		</div>
+		<br><br>
+		<div>
+			<button onclick="triggerDeploy()">Deploy</button>
+		</div>
+		<br>
+		<div>
+			<button onclick="location.reload()">Refresh</button>
+		</div>
+
+
+
+	</body>
+</html>
